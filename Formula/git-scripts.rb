@@ -4,14 +4,28 @@ class GitScripts < Formula
   url "https://github.com/jwiegley/git-scripts.git",
     :revision => "772286aa825b11d572dbe4052c9057c9b40f778d"
   version "1.0.0"
-  revision 1
+  revision 2
   head "https://github.com/jwiegley/git-scripts.git"
 
   bottle do
     cellar :any_skip_relocation
   end
 
+  resource "Git.pm" do
+    url "https://cpan.metacpan.org/authors/id/M/MS/MSOUTH/Git-0.41.tar.gz"
+    mirror "http://search.cpan.org/CPAN/authors/id/M/MS/MSOUTH/Git-0.41.tar.gz"
+    sha256 "9d4de21612253a1d3252ff7657d7e832dcf3cc2a748a8c84f73de618a3a38239"
+  end
+
   def install
+    ENV.prepend_create_path "PERL5LIB", libexec/"lib/perl5"
+    resources.each do |r|
+      r.stage do
+        system "perl", "Makefile.PL", "INSTALL_BASE=#{libexec}"
+        system "make", "install"
+      end
+    end
+
     scripts = %w[
       git-addremove
       git-addsub
