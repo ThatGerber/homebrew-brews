@@ -3,6 +3,8 @@ class GitScripts < Formula
   homepage "https://github.com/jwiegley/git-scripts"
   url "https://github.com/jwiegley/git-scripts.git",
     :revision => "772286aa825b11d572dbe4052c9057c9b40f778d"
+  version "1.0.0"
+  revision 1
   head "https://github.com/jwiegley/git-scripts.git"
 
   bottle do
