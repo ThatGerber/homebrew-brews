@@ -2,7 +2,7 @@ class GitScripts < Formula
   desc "Scripts written, downloaded or clipped from #git."
   homepage "https://github.com/thatgerber/git-scripts"
   url "https://github.com/thatgerber/git-scripts.git",
-    :tag => "1.0.0"
+    :tag => "1.0.0",
     :revision => "7e3a0edfaa970b74311c84c23aa8641f5c50acfd"
   head "https://github.com/jwiegley/git-scripts.git"
 
