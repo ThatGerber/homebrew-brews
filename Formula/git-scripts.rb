@@ -4,7 +4,7 @@ class GitScripts < Formula
   url "https://github.com/jwiegley/git-scripts.git",
     :revision => "772286aa825b11d572dbe4052c9057c9b40f778d"
   version "1.0.0"
-  revision 2
+  revision 3
   head "https://github.com/jwiegley/git-scripts.git"
 
   bottle do
@@ -19,8 +19,8 @@ class GitScripts < Formula
 
   def install
     ENV.prepend_create_path "PERL5LIB", libexec/"lib/perl5"
-    resources.each do |r|
-      r.stage do
+    resources.each do |res|
+      res.stage do
         system "perl", "Makefile.PL", "INSTALL_BASE=#{libexec}"
         system "make", "install"
       end
@@ -120,7 +120,8 @@ class GitScripts < Formula
       git-write-stream-info
       git-wtf
     ]
-    bin.install scripts
+
+    bin.env_script_all_files(scripts, :PERL5LIB => ENV["PERL5LIB"])
   end
 
   test do
